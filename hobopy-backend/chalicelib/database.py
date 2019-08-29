@@ -89,3 +89,11 @@ def delete_todo(todo_id):
         ReturnValues='ALL_OLD'
     )
     return result['Attributes']
+
+def broadcast_gaora(memo):
+    if len(memo) > 30:
+        memo = "ホームラン" + memo
+    if "ホームラン" in memo:
+        memo = memo.replace("ホームラン", "『イッツ！』")
+        memo += "『ゴーンヌ!』"
+    return memo
