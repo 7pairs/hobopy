@@ -1,0 +1,67 @@
+{
+    "Todos": [
+        {
+            "PutRequest": {
+                "Item": {
+                    "id": {
+                        "S": "aa0123456789"
+                    },
+                    "title": {
+                        "S": "ブライアン・シュリッター"
+                    },
+                    "memo": {
+                        "S": "シュレッダー"
+                    },
+                    "priority": {
+                        "N": "3"
+                    },
+                    "completed": {
+                        "BOOL": false
+                    }
+                }
+            }
+        },
+        {
+            "PutRequest": {
+                "Item": {
+                    "id": {
+                        "S": "bb0123456789"
+                    },
+                    "title": {
+                        "S": "ニール・ワグナー"
+                    },
+                    "memo": {
+                        "S": "ワグナリア"
+                    },
+                    "priority": {
+                        "N": "2"
+                    },
+                    "completed": {
+                        "BOOL": false
+                    }
+                }
+            }
+        },
+        {
+            "PutRequest": {
+                "Item": {
+                    "id": {
+                        "S": "cc0123456789"
+                    },
+                    "title": {
+                        "S": "カイル・マーティン"
+                    },
+                    "memo": {
+                        "S": "打ち取るまでかえるま10"
+                    },
+                    "priority": {
+                        "N": "1"
+                    },
+                    "completed": {
+                        "BOOL": false
+                    }
+                }
+            }
+        }
+    ]
+}
