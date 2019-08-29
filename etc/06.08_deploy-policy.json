@@ -1,0 +1,36 @@
+{
+    "Version": "2012-10-17",
+    "Statement": [
+        {
+            "Action": [
+                "codecommit:CancelUploadArchive",
+                "codecommit:GetBranch",
+                "codecommit:GetCommit",
+                "codecommit:GetUploadArchiveStatus",
+                "codecommit:UploadArchive"
+            ],
+            "Resource": "*",
+            "Effect": "Allow"
+        },
+        {
+            "Action": [
+                "codebuild:BatchGetBuilds",
+                "codebuild:StartBuild"
+            ],
+            "Resource": "*",
+            "Effect": "Allow"
+        },
+        {
+            "Action": [
+                "s3:GetObject",
+                "s3:GetObjectVersion",
+                "s3:GetBucketVersioning",
+                "s3:CreateBucket",
+                "s3:PutObject",
+                "s3:PutBucketVersioning"
+            ],
+            "Resource": "*",
+            "Effect": "Allow"
+        }
+    ]
+}
