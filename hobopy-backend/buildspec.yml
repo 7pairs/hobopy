@@ -6,6 +6,8 @@ phases:
       - aws --version
       - sudo pip install 'chalice>=1.9.0,<1.10.0'
       - sudo pip install -r requirements.txt
+      - sudo pip install pytest
+      - pytest tests/ || exit 1
       - chalice package /tmp/packaged --stage prod
       - aws cloudformation package --template-file /tmp/packaged/sam.json --s3-bucket ${APP_S3_BUCKET} --output-template-file transformed.yaml
 artifacts:
