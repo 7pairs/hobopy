@@ -1,43 +1,31 @@
-from selenium.webdriver.support import expected_conditions as EC
-from selenium.webdriver.support.ui import WebDriverWait, Select
+from selene.api import *
 
 # ToDo新規登録のテストシナリオ
-class TestTodoInputSpaghetti:
+class TestTodoInputSelene:
 
     def test_ToDoを一件登録する(self, driver):
         # 画面を開く
         driver.get('http://127.0.0.1:8002/index.html')
 
         # 登録ボタンをタップする
-        driver.find_element_by_id("new-todo").click()
-        WebDriverWait(driver, 10).until(
-            EC.visibility_of(
-                driver.find_element_by_class_name("modal-title"))
-        )
+        driver.s("#new-todo").click()
+        driver.s(".modal-title").should(be.visible)
 
         # 各入力欄に値を入力する
-        driver.find_element_by_id(
-            "modal-todo-title").send_keys("CATCH the GLORY")
-        driver.find_element_by_id(
-            "modal-todo-memo").send_keys("新時代、熱狂しろ！")
-        priority_element = driver.find_element_by_id(
-            "modal-todo-priority")
-        priority_select_element = Select(priority_element)
-        priority_select_element.select_by_value("3")
+        driver.s("#modal-todo-title").set_value("CATCH the GLORY")
+        driver.s("#modal-todo-memo").set_value("新時代、熱狂しろ！")
+        driver.s("#modal-todo-priority").click()
+        driver.s("#modal-todo-priority :nth-child(3)").click()
 
         # 登録ボタンをタップする
-        driver.find_element_by_id("register-button").click()
+        driver.s("#register-button").click()
 
         # 入力した内容が表示されていることを確認
-        WebDriverWait(driver, 10).until(
-            EC.visibility_of(driver.find_element_by_id("todo-list"))
-        )
+        driver.s("#todo-list").should(be.visible)
         assert_flg = False
-        table_element = driver.find_element_by_id("todo-list")
-        todo_title_elements = \
-            table_element.find_elements_by_css_selector(
-                "td:nth-of-type(2)")
-        for todo_title_element in todo_title_elements:
-            if todo_title_element.text.find("CATCH the GLORY"):
+        todo_elements = driver.ss("#todo-list tr")
+        for todo_element in todo_elements:
+            if todo_element.s("td:nth-of-type(2)")\
+                    .text.find("CATCH the GLORY"):
                 assert_flg = True
         assert assert_flg

@@ -9,9 +9,10 @@ def driver():
     # ヘッドレスモードを有効にする（次の行をコメントアウトすると画面が表示される）
     options.add_argument('--headless')
 
-    # ChromeのWebDriverオブジェクトを作成する
-    driver = Chrome(options=options,
-                    executable_path='/usr/local/bin/chromedriver')
+    # Selene使用前の記述はコメントアウトしています
+    # # ChromeのWebDriverオブジェクトを作成する
+    # driver = Chrome(options=options,
+    #                 executable_path='/usr/local/bin/chromedriver')
 
     # # Windowsの場合のChromeのWebDriverオブジェクトの作成はこちらのコードになります
     # # ChromeのWebDriverオブジェクトを作成する
@@ -22,6 +23,12 @@ def driver():
     #     options=options,
     #     executable_path=
     #     'D:\\Program\\chromedriver_win32\\chromedriver.exe')
+
+    # ChromeのWebDriverオブジェクトを作成する
+    chrome_driver = Chrome(options=options,
+                         executable_path='/usr/local/bin/chromedriver')
+    # SeleneDriverにラップする
+    driver = SeleneDriver.wrap(chrome_driver)
 
     # テストケース実施
     yield driver
