@@ -1,0 +1,62 @@
+{
+    "pipeline": {
+        "roleArn": "<REPLACE YOUR ROLE ARN!!!!!>", 
+        "stages": [
+            {
+                "name": "Source", 
+                "actions": [
+                    {
+                        "inputArtifacts": [], 
+                        "name": "Source", 
+                        "actionTypeId": {
+                            "category": "Source", 
+                            "owner": "AWS", 
+                            "version": "1", 
+                            "provider": "CodeCommit"
+                        }, 
+                        "outputArtifacts": [
+                            {
+                                "name": "SourceRepo"
+                            }
+                        ], 
+                        "configuration": {
+                            "BranchName": "master", 
+                            "RepositoryName": "<REPLACE YOUR REPOSITORY NAME!!!!!>"
+                        }, 
+                        "runOrder": 1
+                    }
+                ]
+            }, 
+            {
+                "name": "Build", 
+                "actions": [
+                    {
+                        "inputArtifacts": [
+                            {
+                                "name": "SourceRepo"
+                            }
+                        ], 
+                        "name": "CodeBuild", 
+                        "actionTypeId": {
+                            "category": "Build", 
+                            "owner": "AWS", 
+                            "version": "1", 
+                            "provider": "CodeBuild"
+                        }, 
+                        "outputArtifacts": [], 
+                        "configuration": {
+                            "ProjectName": "hobopy-frontend-build"
+                        }, 
+                        "runOrder": 1
+                    }
+                ]
+            }
+        ], 
+        "artifactStore": {
+            "type": "S3", 
+            "location": "<REPLACE YOUR BUCKET NAME!!!!!>"
+        }, 
+        "name": "hobopy-frontend-pipeline", 
+        "version": 1
+    }
+}
