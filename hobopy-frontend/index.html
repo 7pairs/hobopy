@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <title>ほぼPythonだけでサーバーレスアプリをつくろう</title>
+
+    <!-- Bootstrapを利用する -->
+    <link rel="stylesheet"
+      href="http://cdn.honokak.osaka/honoka/4.3.1/css/bootstrap.min.css">
+
+  </head>
+  <body>
+    <nav class="navbar navbar-dark bg-dark">
+      <a class="navbar-brand" href="#">
+        ほぼPythonだけでサーバーレスアプリをつくろう</a>
+      <button class="btn btn-outline-warning" id="new-todo" data-toggle="modal"
+        data-target="#input-form">新規登録</button>
+    </nav>
+    <table class="table table-hover">
+      <thead>
+        <th scope="col"></th>
+        <th scope="col">タイトル</th>
+        <th scope="col">メモ</th>
+        <th scope="col">重要度</th>
+        <th scope="col"></th>
+        <th scope="col"></th>
+      </thead>
+
+      <!-- ToDoリストの表示領域 -->
+      <tbody id="todo-list">
+      </tbody>
+
+    </table>
+
+    <!-- 新規登録／変更用モーダルダイアログ領域 -->
+    <div class="modal fade" id="input-form" tabindex="-1" role="dialog">
+      <div class="modal-dialog modal-dialog-centered" role="document">
+        <div class="modal-content">
+          <div class="modal-header">
+            <h5 class="modal-title" id="modal-title"></h5>
+            <button type="button" class="close" data-dismiss="modal"
+              aria-label="Close">
+              <span aria-hidden="true">&times;</span>
+            </button>
+          </div>
+          <div class="modal-body">
+            <input type="hidden" id="modal-todo-id">
+            <div class="form-group">
+              <label for="modal-todo-title">タイトル</label>
+              <input type="text" class="form-control" id="modal-todo-title">
+            </div>
+            <div class="form-group">
+              <label for="modal-todo-memo">メモ</label>
+              <input type="text" class="form-control" id="modal-todo-memo">
+            </div>
+            <div class="form-group">
+              <label for="modal-todo-priority">重要度</label>
+              <select class="form-control" id="modal-todo-priority">
+                <option value="1">低</option>
+                <option value="2">中</option>
+                <option value="3">高</option>
+              </select>
+            </div>
+          </div>
+          <div class="modal-footer">
+            <button type="button" class="btn btn-secondary"
+              data-dismiss="modal">閉じる</button>
+            <button type="button" class="btn btn-primary" id="register-button">
+              登録</button>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- jQueryを利用する -->
+    <script src="https://code.jquery.com/jquery-3.4.1.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.15.0/umd/popper.min.js"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"></script>
+    <script type="module" src="__target__/hobopy-frontend.js"></script>
+
+  </body>
+</html>
